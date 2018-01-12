@@ -1,0 +1,68 @@
+{{#partial "content"}}
+
+
+<h1>Add Your Items</h1>
+<form action="/event/new" method="post">
+    <label for="name">Event name</label>
+    <input id="name" name="name" type="text">
+    <br>
+    <label for="description">Description of event: </label>
+    <input id="description" name="description" type="text">
+    <br>
+    <br>
+    <label for="year">Year of event: </label>
+    <input id="year" name="year" type="text">
+    <br>
+    <label for="month">Month of event: </label>
+    <input id="month" name="month" type="text">
+    <br>
+    <label for="day">Day of month:</label>
+    <input id="day" name="day" type="text">
+    <br>
+    <br>
+    <div id="attendee"> <label for="attendee"> Add up to 10 attendees: </label>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee1" id="attendee1" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee2" id="attendee2" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee3" id="attendee3" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee4" id="attendee4" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee5" id="attendee5" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee6" id="attendee6" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee4" id="attendee7" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee5" id="attendee8" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee6" id="attendee9" />
+        <br>
+        <br>
+        Attendee name:
+        <input type="text" name="attendee6" id="attendee10" />
+    </div>
+    <br>
+    <button type="submit" class="btn btn-default">Add Event!</button>
+</form>
+{{/partial}}
+{{> layout.hbs}}

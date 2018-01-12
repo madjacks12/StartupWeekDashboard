@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.List;
 
 import models.Event;
 import spark.ModelAndView;
@@ -32,10 +33,21 @@ public class App {
             String month = request.queryParams("month");
             String attendee = request.queryParams("attendee");
             Event newEvent = new Event(name, description, year, day, month, attendee);
+            List<String> attendeeList = new ArrayList<String>();
+            attendeeList.add(attendee);
             model.put("newEvent", newEvent);
+            model.put("attendeeList", attendeeList);
             return new ModelAndView(model, "success.hbs");
-
         }, new HandlebarsTemplateEngine());
+
+        get("/event", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Event> events = Event.getAll();
+            model.put("events", events);
+            return new ModelAndView(model, "all-events.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
 
 
 

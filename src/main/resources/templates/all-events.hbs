@@ -1,0 +1,31 @@
+{{#partial "content"}}
+<h1>Item list!</h1>
+{{#if events}}
+<h2>All Items:</h2>
+<table style="width:100%">
+    <tr>
+        <th>Name:</th>
+        <th>Description:</th>
+        <th>Year:</th>
+        <th>Day:</th>
+        <th>Month:</th>
+        <th>Attendees:</th>
+    </tr>
+    {{#each events}}
+    <tr>
+        <th>{{name}}</th>
+        <th>{{description}}</th>
+        <th>{{year}}</th>
+        <th>{{day}}</th>
+        <th>{{month}}</th>
+        <th>{{attendeeList}}</th>
+    </tr>
+    {{/each}}
+</table>
+{{else}}
+<p>No events added yet</p>
+{{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}
