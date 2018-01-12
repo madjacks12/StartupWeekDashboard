@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class EventTest {
     public Event testEvent() {
-        Event testEvent = new Event("Java", "test description", 2018, 30, "March", );
+        Event testEvent = new Event("Java", "test description", 2018, 30, "March","Dave, Brian, Jeff");
         return testEvent;
     }
 
@@ -31,6 +31,12 @@ public class EventTest {
         Event testEventThree = testEvent();
 
         assertEquals(3, Event.getAll().size());
+    }
+    @Test
+    public void getId_postsInstantiateWithAnID_1() throws Exception {
+        Event.clearAllEvents();
+        Event testEventOne = testEvent();
+        assertEquals(2, testEventOne.getId());
     }
 
     }
