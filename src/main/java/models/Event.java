@@ -11,6 +11,8 @@ public class Event {
     private int day;
     private String month;
     private String attendee;
+    private static ArrayList<Event>instances = new ArrayList<>();
+    private int id;
 
 
     public Event(String name, String description, int year, int day, String month, String attendee) {
@@ -21,6 +23,12 @@ public class Event {
         this.month = month;
         this.attendee = attendee;
         attendeeList.add(this.attendee);
+        instances.add(this);
+        this.id = instances.size();
+    }
+
+    public static void clearAllEvents() {
+        instances.clear();
     }
 
     public String getName() {
@@ -49,5 +57,13 @@ public class Event {
 
     public String getAttendee() {
         return attendee;
+    }
+
+    public static ArrayList<Event> getAll() {
+        return instances;
+    }
+
+    public int getId() {
+        return id;
     }
 }

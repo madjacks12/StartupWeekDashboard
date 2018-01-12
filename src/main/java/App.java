@@ -16,5 +16,6 @@ public class App {
             return new ModelAndView(model, "templates/index.hbs");
         }, new HandlebarsTemplateEngine() );
 
+
     }
 }
