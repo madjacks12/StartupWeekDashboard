@@ -1,0 +1,13 @@
+{{#partial "content"}}
+<p>Content:</p>
+<p>{{ event.name }}</p>
+<h5>Created At:</h5>
+<p> {{ event.description }}</p>
+<h5>Post status:</h5>
+<p>
+    <a href="/events/{{event.id}}/update">Edit this event</a>
+    <br>
+</p>
+{{/partial}}
+
+{{> layout.hbs}}

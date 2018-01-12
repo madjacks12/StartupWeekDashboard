@@ -13,18 +13,26 @@ import static spark.Spark.*;
 
 public class App {
     public static void main(String[] args) {
+        staticFileLocation("/public");
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
+            ArrayList<Event> events = Event.getAll();
+            model.put("events", events);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/event/new", (request, response) -> {
+        get("/events/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "event-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("event/new", (request, response) -> {
+        get("/about", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/events/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String name = request.queryParams("name");
             String description = request.queryParams("description");
@@ -38,7 +46,7 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/event", (request, response) -> {
+        get("/events", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             ArrayList<Event> events = Event.getAll();
 
@@ -46,7 +54,15 @@ public class App {
             return new ModelAndView(model, "all-events.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/posts/:id/update", (req, res) -> {
+        get("/events/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEventToFind = Integer.parseInt(req.params("id")); //pull id - must match route segment
+            Event foundEvent = Event.findById(idOfEventToFind); //use it to find post
+            model.put("event", foundEvent); //add it to model for template to display
+            return new ModelAndView(model, "event-details.hbs"); //individual post page.
+        }, new HandlebarsTemplateEngine());
+
+        get("/events/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEventToEdit = Integer.parseInt(req.params("id"));
             Event editEvent = Event.findById(idOfEventToEdit);
@@ -54,7 +70,7 @@ public class App {
             return new ModelAndView(model, "event-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/posts/:id/update", (req, res) -> {
+        post("/events/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String newName = req.queryParams("name");
             String newDescription = req.queryParams("description");

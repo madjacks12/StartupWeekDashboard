@@ -23,10 +23,11 @@
                 <br>
                 <label for="attendees">Edit attendees:</label>
                 <input id="attendees" name="attendees" type="text" value="{{editEvent.attendees}}">
+                <button type="submit" class="btn btn-default">Save Event!</button>
             </form>
     {{else}}
-    <h1>Add Your Items</h1>
-    <form action="/event/new" method="post" name="form2">
+    <h1>Add Your Event!</h1>
+    <form action="/events/new" method="post" name="form2">
         <label for="name">Event name</label>
         <input id="name" name="name" type="text">
         <br>
@@ -48,8 +49,8 @@
         <input id="attendees" name="attendees" type="text">
         </div>
         <br>
-        {{/if}}
         <button type="submit" class="btn btn-default">Add Event!</button>
+        {{/if}}
     </form>
 {{/partial}}
 {{> layout.hbs}}

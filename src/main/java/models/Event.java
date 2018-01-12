@@ -10,7 +10,7 @@ public class Event {
     private int day;
     private String month;
     private String attendees;
-    private static ArrayList<Event>instances = new ArrayList<>();
+    private static ArrayList<Event> instances = new ArrayList<>();
     private int id;
 
 
@@ -40,9 +40,6 @@ public class Event {
         this.month=month;
         this.year=year;
         this.day=day;
-    }
-    public void deletePost() {
-        instances.remove(id-1);
     }
 
     public static void clearAllEvents() {
