@@ -62,10 +62,9 @@ public class App {
             String newMonth = req.queryParams("month");
             int newYear = Integer.parseInt(req.queryParams("year"));
             int newDay = Integer.parseInt(req.queryParams("day"));
-
             int idOfEventToEdit = Integer.parseInt(req.params("id"));
             Event editPost = Event.findById(idOfEventToEdit);
-            editPost.update(newContent);
+            editPost.update(newName, newDescription, newAttendees, newMonth, newYear, newDay);
             return new ModelAndView(model, "success.hbs");
 
 
