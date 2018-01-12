@@ -36,7 +36,7 @@ public class EventTest {
         Event testEventTwo = testEvent();
         Event testEventThree = testEvent();
 
-        assertEquals(2, Event.getAll().size());
+        assertEquals(3, Event.getAll().size());
     }
 
     }
