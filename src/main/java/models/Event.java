@@ -33,7 +33,7 @@ public class Event {
         return  instances.get(id-1);
     }
 
-    public void update(String name, String description, String attendees, String month, int year, int day) {
+    public void update(String name, String description, int year, int day, String month, String attendees) {
         this.name = name;
         this.description=description;
         this.attendees=attendees;

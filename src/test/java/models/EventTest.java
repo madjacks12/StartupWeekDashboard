@@ -39,10 +39,22 @@ public class EventTest {
         assertEquals(1, testEventOne.getId());
     }
     @Test
-    public void findById_findByIDWorks() throws Exception {
+    public void findById_findByIDWorks_2() throws Exception {
         Event testEventOne = testEvent();
         Event TestEventTwo = new Event("party", "cool", 2018, 30, "March", "Bill");
         assertEquals(2, Event.findById(TestEventTwo.getId()).getId());
+    }
+    @Test
+    public void updateEvent_UpdateEventWorks_true() throws Exception {
+        Event event = testEvent();
+        String formerName = event.getName();
+        String formerDescription = event.getDescription();
+        int formerId = event.getId();
+
+        event.update("C#", "Learning C#", 2018, 30, "March","Dave, Brian, Jeff");
+        assertEquals(formerId, event.getId());
+        assertNotEquals(formerId, event.getId());
+        assertNotEquals(formerDescription, event.getDescription());
     }
 }
 
