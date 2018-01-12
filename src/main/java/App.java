@@ -31,21 +31,42 @@ public class App {
             int year = Integer.parseInt(request.queryParams("year"));
             int day = Integer.parseInt(request.queryParams("day"));
             String month = request.queryParams("month");
-            String attendee = request.queryParams("attendee");
-            Event newEvent = new Event(name, description, year, day, month, attendee);
-            List<String> attendeeList = new ArrayList<String>();
-            attendeeList.add(attendee);
+            String attendees = request.queryParams("attendees");
+            Event newEvent = new Event(name, description, year, day, month, attendees);
             model.put("newEvent", newEvent);
-            model.put("attendeeList", attendeeList);
+            System.out.print(attendees);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/event", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             ArrayList<Event> events = Event.getAll();
+
             model.put("events", events);
             return new ModelAndView(model, "all-events.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/posts/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEventToEdit = Integer.parseInt(req.params("id"));
+            Event editEvent = Event.findById(idOfEventToEdit);
+            model.put("editEvent", editEvent);
+            return new ModelAndView(model, "event-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/posts/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String newName = req.queryParams("name");
+            String newDescription = req.queryParams("description");
+            String newAttendees = req.queryParams("attendees");
+            String newMonth = req.queryParams("month");
+            int newYear = Integer.parseInt(req.queryParams("year"));
+            int newDay = Integer.parseInt(req.queryParams("day"));
+
+            int idOfEventToEdit = Integer.parseInt(req.params("id"));
+            Event editPost = Event.findById(idOfEventToEdit);
+            editPost.update(newContent);
+            return new ModelAndView(model, "success.hbs");
 
 
 

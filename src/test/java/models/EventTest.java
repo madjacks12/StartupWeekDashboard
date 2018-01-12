@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class EventTest {
     public Event testEvent() {
-        Event testEvent = new Event("Java", "test description", 2018, 30, "March", "Dave");
+        Event testEvent = new Event("Java", "test description", 2018, 30, "March", );
         return testEvent;
     }
 
@@ -24,12 +24,6 @@ public class EventTest {
         assertEquals(true, testEventOne instanceof Event);
     }
 
-    @Test
-    public void newEvent_AddsAttendeeNameToList_True(){
-        Event testEventOne = testEvent();
-        testEventOne.getAttendeeList();
-        assertEquals(true, testEventOne.getAttendeeList().contains("Dave"));
-        }
     @Test
     public void newEvent_AddsAllEventsToArray_3(){
         Event testEventOne = testEvent();

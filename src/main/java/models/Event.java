@@ -6,25 +6,43 @@ import java.util.List;
 public class Event {
     private String name;
     private String description;
-    private List<Object>attendeeList = new ArrayList<>();
     private int year;
     private int day;
     private String month;
-    private String attendee;
+    private String attendees;
     private static ArrayList<Event>instances = new ArrayList<>();
     private int id;
 
 
-    public Event(String name, String description, int year, int day, String month, String attendee) {
+    public Event(String name, String description, int year, int day, String month, String attendees) {
         this.name = name;
         this.description = description;
         this.year = year;
         this.day = day;
         this.month = month;
-        this.attendee = attendee;
-        attendeeList.add(this.attendee);
         instances.add(this);
+        this.attendees = attendees;
         this.id = instances.size();
+    }
+
+    public String getAttendees() {
+        return attendees;
+    }
+
+    public static Event findById(int id){
+        return  instances.get(id-1);
+    }
+
+    public void update(String name, String description, String attendees, String month, int year, int day) {
+        this.name = name;
+        this.description=description;
+        this.attendees=attendees;
+        this.month=month;
+        this.year=year;
+        this.day=day;
+    }
+    public void deletePost() {
+        instances.remove(id-1);
     }
 
     public static void clearAllEvents() {
@@ -39,10 +57,6 @@ public class Event {
         return description;
     }
 
-    public List<Object> getAttendeeList() {
-        return attendeeList;
-    }
-
     public int getYear() {
         return year;
     }
@@ -53,10 +67,6 @@ public class Event {
 
     public String getMonth() {
         return month;
-    }
-
-    public String getAttendee() {
-        return attendee;
     }
 
     public static ArrayList<Event> getAll() {
