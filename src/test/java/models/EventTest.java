@@ -11,7 +11,7 @@ public class EventTest {
     @Test
     public void newEvent_eventInstantiatesCorrectly_True() throws ParseException {
         Event testEvent = new Event("Java", "test description", 2018, 30, "March");
-        assertEquals(false, testEvent instanceof Event);
+        assertEquals(true, testEvent instanceof Event);
 
 
     }
