@@ -36,7 +36,7 @@ public class EventTest {
     public void getId_postsInstantiateWithAnID_1() throws Exception {
         Event.clearAllEvents();
         Event testEventOne = testEvent();
-        assertEquals(2, testEventOne.getId());
+        assertEquals(1, testEventOne.getId());
     }
 
     }
