@@ -53,7 +53,7 @@ public class EventTest {
 
         event.update("C#", "Learning C#", 2018, 30, "March","Dave, Brian, Jeff");
         assertEquals(formerId, event.getId());
-        assertNotEquals(formerId, event.getId());
+        assertEquals(formerId, event.getId());
         assertNotEquals(formerDescription, event.getDescription());
     }
 }
