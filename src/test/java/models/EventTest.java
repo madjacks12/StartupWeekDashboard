@@ -42,7 +42,7 @@ public class EventTest {
     public void findById_findByIDWorks() throws Exception {
         Event testEventOne = testEvent();
         Event TestEventTwo = new Event("party", "cool", 2018, 30, "March", "Bill");
-        assertEquals(1, Event.findById(TestEventTwo.getId()).getId());
+        assertEquals(2, Event.findById(TestEventTwo.getId()).getId());
     }
 }
 
