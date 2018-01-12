@@ -1,8 +1,5 @@
 package models;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +31,9 @@ public class Event {
         return description;
     }
 
-//    public List<Object> getAttendeeList() {
-//        return attendeeList;
-//    }
+    public List<Object> getAttendeeList() {
+        return attendeeList;
+    }
 
     public int getYear() {
         return year;

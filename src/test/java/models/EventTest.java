@@ -22,6 +22,5 @@ public class EventTest {
         assertEquals(true, testEvent.getAttendeeList().contains("Dave"));
         }
 
-
     }
 
