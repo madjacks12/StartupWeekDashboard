@@ -9,7 +9,7 @@ public class Event {
     private int year;
     private int day;
     private String month;
-    private ArrayList attendees;
+    private ArrayList<String> attendees;
     private static ArrayList<Event> instances = new ArrayList<>();
     private int id;
 

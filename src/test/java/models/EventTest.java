@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class EventTest {
     public Event testEvent() {
-        Event testEvent = new Event("Java", "test description", 2018, 30, "March","Dave, Brian, Jeff");
+        Event testEvent = new Event("Java", "test description", 2018, 30, "March",["dave"]);
         return testEvent;
     }
 

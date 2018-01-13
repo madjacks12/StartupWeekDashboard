@@ -1,13 +1,20 @@
 {{#partial "content"}}
-<p>Content:</p>
+
+<h4>Name:</h4>
 <p>{{ event.name }}</p>
-<h5>Created At:</h5>
+<h4>Event Description:</h4>
 <p> {{ event.description }}</p>
-<h5>Post status:</h5>
-<p>
+<h4>Event year:</h4>
+<p> {{ event.year }}</p>
+<h4>Event month:</h4>
+<p> {{ event.month }}</p>
+<h4>Event year:</h4>
+<p> {{ event.day }}</p>
+<h4>Attendees:</h4>
+<p> {{ event.attendees }}</p>
     <a href="/events/{{event.id}}/update">Edit this event</a>
     <br>
-</p>
+
 {{/partial}}
 
 {{> layout.hbs}}

@@ -43,7 +43,7 @@ public class App {
             String month = request.queryParams("month");
             String attendees = request.queryParams("attendees");
             String[] attendeesSplit = attendees.split(",");
-            ArrayList<String> attendeesList = new ArrayList<String>(Arrays.asList(attendees));
+            ArrayList<String> attendeesList = new ArrayList<String>(Arrays.asList(attendeesSplit));
             Event newEvent = new Event(name, description, year, day, month, attendeesList);
             model.put("newEvent", newEvent);
             System.out.print(attendeesList);
@@ -79,12 +79,14 @@ public class App {
             String newName = req.queryParams("name");
             String newDescription = req.queryParams("description");
             String newAttendees = req.queryParams("attendees");
+            String[] newAttendeesSplit = newAttendees.split(",");
+            ArrayList<String> attendeesList = new ArrayList<String>(Arrays.asList(newAttendeesSplit));
             String newMonth = req.queryParams("month");
             int newYear = Integer.parseInt(req.queryParams("year"));
             int newDay = Integer.parseInt(req.queryParams("day"));
             int idOfEventToEdit = Integer.parseInt(req.params("id"));
             Event editEvent = Event.findById(idOfEventToEdit);
-            editEvent.update(newName, newDescription, newYear, newDay, newMonth, newAttendees);
+            editEvent.update(newName, newDescription, newYear, newDay, newMonth, attendeesList);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
