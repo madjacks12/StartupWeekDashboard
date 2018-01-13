@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{#block "title"}}Startup Weekend Event Dashboard{{/block}}</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/events">See All Events</a></li>
+    <li role="presentation"><a href="/events/new">Add a New Event</a></li>
+    <li role="presentation"><a href="/about">About</a></li>
+
+</ul>
+<div class="container">
+    <!--begin main template-->
+    <div class="page-header">
+        <img src="/images/startup.jpeg" width="70%">
+        <h1>Add and edit events</h1>
+    </div>
+
+    <div class="col-md-12">
+        {{#block "content"}}
+        {{/block}}
+
+    </div>
+</div>
+<!--end main template-->
+{{#block "footer"}}
+</body>
+</html>
+{{/block}}
