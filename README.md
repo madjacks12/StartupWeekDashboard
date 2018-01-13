@@ -7,7 +7,7 @@
   ## Description
   
   _This app takes user input for creating an event and stores it online. Events are saved by dynamically generated id numbers. 
-  The user can input a number of different fields including name, description, year, month, day and attendees. _
+  The user can input a number of different fields including name, description, year, month, day and attendees._
   
   ## Setup/Installation Requirements
   
