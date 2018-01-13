@@ -1,6 +1,8 @@
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import models.Event;
@@ -40,9 +42,11 @@ public class App {
             int day = Integer.parseInt(request.queryParams("day"));
             String month = request.queryParams("month");
             String attendees = request.queryParams("attendees");
-            Event newEvent = new Event(name, description, year, day, month, attendees);
+            String[] attendeesSplit = attendees.split(",");
+            ArrayList<String> attendeesList = new ArrayList<String>(Arrays.asList(attendees));
+            Event newEvent = new Event(name, description, year, day, month, attendeesList);
             model.put("newEvent", newEvent);
-            System.out.print(attendees);
+            System.out.print(attendeesList);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 

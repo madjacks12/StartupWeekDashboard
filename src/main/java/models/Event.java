@@ -9,23 +9,25 @@ public class Event {
     private int year;
     private int day;
     private String month;
-    private String attendees;
+    private ArrayList attendees;
     private static ArrayList<Event> instances = new ArrayList<>();
     private int id;
 
 
-    public Event(String name, String description, int year, int day, String month, String attendees) {
+    public Event(String name, String description, int year, int day, String month, ArrayList attendees) {
         this.name = name;
         this.description = description;
         this.year = year;
         this.day = day;
         this.month = month;
         instances.add(this);
+        //this.newAttendees=newAttendees;
         this.attendees = attendees;
+
         this.id = instances.size();
     }
 
-    public String getAttendees() {
+    public ArrayList getAttendees() {
         return attendees;
     }
 
@@ -33,7 +35,7 @@ public class Event {
         return  instances.get(id-1);
     }
 
-    public void update(String name, String description, int year, int day, String month, String attendees) {
+    public void update(String name, String description, int year, int day, String month, ArrayList attendees) {
         this.name = name;
         this.description=description;
         this.attendees=attendees;
