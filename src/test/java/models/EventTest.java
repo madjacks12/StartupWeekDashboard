@@ -10,7 +10,8 @@ import static org.junit.Assert.*;
 
 public class EventTest {
     public Event testEvent() {
-        Event testEvent = new Event("Java", "test description", 2018, 30, "March",["dave"]);
+        ArrayList<String> attendees = new ArrayList<String>();
+        Event testEvent = new Event("Java", "test description", 2018, 30, "March", attendees);
         return testEvent;
     }
 
@@ -22,6 +23,13 @@ public class EventTest {
     public void newEvent_eventInstantiatesCorrectly_True() {
         Event testEventOne = testEvent();
         assertEquals(true, testEventOne instanceof Event);
+    }
+
+    @Test
+    public void newEvent_EventInstantiatesWithData_True() {
+        Event testEventOne = testEvent();
+        assertEquals("Java", testEventOne.getName());
+        assertEquals("test description", testEventOne.getName());
     }
 
     @Test
@@ -38,20 +46,23 @@ public class EventTest {
         Event testEventOne = testEvent();
         assertEquals(1, testEventOne.getId());
     }
+
     @Test
     public void findById_findByIDWorks_2() throws Exception {
         Event testEventOne = testEvent();
-        Event TestEventTwo = new Event("party", "cool", 2018, 30, "March", "Bill");
+        ArrayList<String> attendees = new ArrayList<String>();
+        Event TestEventTwo = new Event("party", "cool", 2018, 30, "March",attendees);
         assertEquals(2, Event.findById(TestEventTwo.getId()).getId());
     }
+
     @Test
     public void updateEvent_UpdateEventWorks_true() throws Exception {
         Event event = testEvent();
         String formerName = event.getName();
         String formerDescription = event.getDescription();
         int formerId = event.getId();
-
-        event.update("C#", "Learning C#", 2018, 30, "March","Dave, Brian, Jeff");
+        ArrayList<String> attendees = new ArrayList<String>();
+        event.update("C#", "Learning C#", 2018, 30, "March",attendees);
         assertEquals(formerId, event.getId());
         assertEquals(formerId, event.getId());
         assertNotEquals(formerDescription, event.getDescription());
