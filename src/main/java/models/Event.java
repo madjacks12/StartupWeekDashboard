@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Event {
@@ -9,25 +10,27 @@ public class Event {
     private int year;
     private int day;
     private String month;
+    private String attendeeList;
     private ArrayList<String> attendees;
     private static ArrayList<Event> instances = new ArrayList<>();
     private int id;
 
 
-    public Event(String name, String description, int year, int day, String month, ArrayList attendees) {
+    public Event(String name, String description, int year, int day, String month, String  attendeeList, ArrayList attendees) {
         this.name = name;
         this.description = description;
         this.year = year;
         this.day = day;
         this.month = month;
         instances.add(this);
-        //this.newAttendees=newAttendees;
-        this.attendees = attendees;
-
+        this.attendeeList=attendeeList;
+        attendees.add(this);
         this.id = instances.size();
     }
 
     public ArrayList getAttendees() {
+        String[] attendeesSplit = attendeeList.split(",");
+        ArrayList<String> attendees = new ArrayList<String>(Arrays.asList(attendeesSplit));
         return attendees;
     }
 

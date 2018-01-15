@@ -44,7 +44,7 @@ public class App {
             String attendees = request.queryParams("attendees");
             String[] attendeesSplit = attendees.split(",");
             ArrayList<String> attendeesList = new ArrayList<String>(Arrays.asList(attendeesSplit));
-            Event newEvent = new Event(name, description, year, day, month, attendeesList);
+            Event newEvent = new Event(name, description, year, day, month, attendees, attendeesList);
             model.put("newEvent", newEvent);
             System.out.print(attendeesList);
             return new ModelAndView(model, "success.hbs");

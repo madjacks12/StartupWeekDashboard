@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 public class EventTest {
     public Event testEvent() {
         ArrayList<String> attendees = new ArrayList<String>();
-        Event testEvent = new Event("Java", "test description", 2018, 30, "March", attendees);
+        Event testEvent = new Event("Java", "test description", 2018, 30, "March", "Dave,Jeff", attendees);
         return testEvent;
     }
 
@@ -27,6 +28,8 @@ public class EventTest {
 
     @Test
     public void newEvent_EventInstantiatesWithData_True() {
+        String attendeeList[] = new String[] {"Dave", "Jeff"};
+        ArrayList<String> attendees = new ArrayList<String>(Arrays.asList(attendeeList));
         Event testEventOne = testEvent();
         assertEquals("Java", testEventOne.getName());
         assertEquals("test description", testEventOne.getDescription());
@@ -34,6 +37,7 @@ public class EventTest {
         assertEquals(30, testEventOne.getDay());
         assertEquals("March", testEventOne.getMonth());
         assertEquals(attendees, testEventOne.getAttendees());
+
 
     }
 
@@ -56,7 +60,7 @@ public class EventTest {
     public void findById_findByIDWorks_2() throws Exception {
         Event testEventOne = testEvent();
         ArrayList<String> attendees = new ArrayList<String>();
-        Event TestEventTwo = new Event("party", "cool", 2018, 30, "March",attendees);
+        Event TestEventTwo = new Event("party", "cool", 2018, 30, "March", "Dave, Jeff", attendees);
         assertEquals(2, Event.findById(TestEventTwo.getId()).getId());
     }
 
