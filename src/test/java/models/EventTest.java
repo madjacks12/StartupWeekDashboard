@@ -29,7 +29,12 @@ public class EventTest {
     public void newEvent_EventInstantiatesWithData_True() {
         Event testEventOne = testEvent();
         assertEquals("Java", testEventOne.getName());
-        assertEquals("test description", testEventOne.getName());
+        assertEquals("test description", testEventOne.getDescription());
+        assertEquals(2018, testEventOne.getYear());
+        assertEquals(30, testEventOne.getDay());
+        assertEquals("March", testEventOne.getMonth());
+        assertEquals(attendees, testEventOne.getAttendees());
+
     }
 
     @Test
