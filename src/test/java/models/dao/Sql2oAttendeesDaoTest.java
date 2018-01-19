@@ -36,8 +36,9 @@ public class Sql2oAttendeesDaoTest {
     @Test
     public void AddingSetsId() throws Exception {
         Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", 1);
-        attendeesDao.add(attendees);
-        assertNotEquals(originalAttendeesId)
+        int originalAttendeesId = testAttendees.getId();
+        attendeesDao.add(testAttendees);
+        assertNotEquals(originalAttendeesId, testAttendees.getId());
     }
 
 

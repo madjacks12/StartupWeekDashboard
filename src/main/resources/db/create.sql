@@ -2,11 +2,11 @@ SET MODE PostgreSQL;
 
 CREATE TABLE IF NOT EXISTS attendees (
   id int PRIMARY KEY auto_increment,
-  firstname VARCHAR
-  lastname VARCHAR,
+  firstName VARCHAR,
+  lastName VARCHAR,
   phone VARCHAR,
   email VARCHAR,
-  eventid INTEGER
+  eventId INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS events (
