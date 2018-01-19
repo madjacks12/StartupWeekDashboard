@@ -7,48 +7,14 @@ import java.util.List;
 public class Event {
     private String name;
     private String description;
-    private int year;
-    private int day;
-    private String month;
-    private String attendeeList;
-    private ArrayList<String> attendees;
-    private static ArrayList<Event> instances = new ArrayList<>();
+    private String time;
     private int id;
 
 
-    public Event(String name, String description, int year, int day, String month, String  attendeeList, ArrayList attendees) {
+    public Event(String name, String description, int year, int day, String time) {
         this.name = name;
         this.description = description;
-        this.year = year;
-        this.day = day;
-        this.month = month;
-        instances.add(this);
-        this.attendeeList=attendeeList;
-        attendees.add(this);
-        this.id = instances.size();
-    }
-
-    public ArrayList getAttendees() {
-        String[] attendeesSplit = attendeeList.split(",");
-        ArrayList<String> attendees = new ArrayList<String>(Arrays.asList(attendeesSplit));
-        return attendees;
-    }
-
-    public static Event findById(int id){
-        return  instances.get(id-1);
-    }
-
-    public void update(String name, String description, int year, int day, String month, ArrayList attendees) {
-        this.name = name;
-        this.description=description;
-        this.attendees=attendees;
-        this.month=month;
-        this.year=year;
-        this.day=day;
-    }
-
-    public static void clearAllEvents() {
-        instances.clear();
+        this.time=time;
     }
 
     public String getName() {
@@ -59,23 +25,33 @@ public class Event {
         return description;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public static ArrayList<Event> getAll() {
-        return instances;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Event event = (Event) o;
+
+        if (id != event.id) return false;
+        if (!name.equals(event.name)) return false;
+        if (description != null ? !description.equals(event.description) : event.description != null) return false;
+        return time != null ? time.equals(event.time) : event.time == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + id;
+        return result;
     }
 }
