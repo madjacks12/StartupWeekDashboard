@@ -74,5 +74,15 @@ public class Sql2oAttendeesDaoTest {
         assertEquals(0, attendeesDao.getAll().size());
     }
 
+    @Test
+    public void clearAllClearsAll() throws Exception {
+        Attendees testAttendeesOne = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", 1);
+        Attendees testAttendeesTwo = new Attendees("chris", "smith", "bruce@davis.com", "420-300-5000", 2);
+        attendeesDao.add(testAttendeesOne);
+        attendeesDao.add(testAttendeesTwo);
+        int daoSize = attendeesDao.getAll().size();
+        attendeesDao.clearAllAttendees();
+        assertTrue(daoSize > 0 && daoSize > attendeesDao.getAll().size());
+    }
 
 }
