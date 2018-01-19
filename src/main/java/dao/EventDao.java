@@ -14,5 +14,5 @@ public interface EventDao {
     List<Attendees> getAllAttendeesByEvent(int eventId);
     void update(int id, String name, String description, String startDate, String startTime);
     void deleteById(int id);
-//    void clearAllEvents();
+    void clearAllEvents();
 }

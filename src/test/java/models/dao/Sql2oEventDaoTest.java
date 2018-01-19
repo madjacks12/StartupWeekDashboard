@@ -93,7 +93,16 @@ public class Sql2oEventDaoTest {
         eventDao.deleteById(testEvent.getId());
         assertEquals(0, eventDao.getAll().size());
     }
-
+    @Test
+    public void clearAllClearsAll() throws Exception {
+        Event testEventOne = new Event("Coding Workshop", "A good one", "03-04-1999", "7:00");
+        Event testEventTwo = new Event("Java cafe", "java test", "03-04-1999", "7:00");
+        eventDao.add(testEventOne);
+        eventDao.add(testEventTwo);
+        int daoSize = eventDao.getAll().size();
+        eventDao.clearAllEvents();
+        assertTrue(daoSize > 0 && daoSize > eventDao.getAll().size());
+    }
 
 
 
