@@ -11,19 +11,13 @@
                 <input id="description" name="description" type="text" value="{{editEvent.description}}">
                 <br>
                 <br>
-                <label for="year">Edit Year of event: </label>
-                <input id="year" name="year" type="text" value="{{editEvent.year}}">
+                <label for="startDate">Date of event: </label>
+                <input id="startDate" name="startDate" type="date" value="{{editEvent.year}}">
                 <br>
-                <label for="month">Edit Month of event: </label>
-                <input id="month" name="month" type="text" value="{{editEvent.month}}">
+                <label for="startTime">Start Time of event: </label>
+                <input id="startTime" name="startTime" type="time" value="{{editEvent.month}}">
                 <br>
-                <label for="day">Edit Day of month:</label>
-                <input id="day" name="day" type="text" value="{{editEvent.day}}">
-                <br>
-                <br>
-                <label for="attendees">Edit attendees:</label>
-                <input id="attendees" name="attendees" type="text" value="{{editEvent.attendees}}">
-                <button type="submit" class="btn btn-primary">Save Event!</button>
+                <button type="submit" class="btn btn-success">Save Event!</button>
             </form>
     {{else}}
     <h1>Add Your Event!</h1>
@@ -35,18 +29,13 @@
         <input id="description" name="description" type="text">
         <br>
         <br>
-        <label for="year">Year of event: </label>
-        <input id="year" name="year" type="text">
+        <label for="startDate">Date of event: </label>
+        <input id="startDate" name="startDate" type="date">
         <br>
-        <label for="month">Month of event: </label>
-        <input id="month" name="month" type="text">
-        <br>
-        <label for="day">Day of month:</label>
-        <input id="day" name="day" type="text">
+        <label for="startTime">Start Time of event: </label>
+        <input id="startTime" name="startTime" type="time">
         <br>
         <br>
-        <label for="attendees">Add attendees separated by commas:</label>
-        <input id="attendees" name="attendees" type="text">
         </div>
         <br>
         <button type="submit" class="btn btn-success">Add Event!</button>
