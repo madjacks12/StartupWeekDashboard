@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 public class Sql2oAttendeesDaoTest {
 
+
     private Sql2oAttendeesDao attendeesDao;
     private Connection conn;
 
@@ -30,6 +31,13 @@ public class Sql2oAttendeesDaoTest {
     @After
     public void tearDown() throws Exception {
         conn.close();
+    }
+
+    @Test
+    public void AddingSetsId() throws Exception {
+        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", 1);
+        attendeesDao.add(attendees);
+        assertNotEquals(originalAttendeesId)
     }
 
 
