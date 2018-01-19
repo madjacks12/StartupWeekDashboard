@@ -18,6 +18,4 @@ public interface EventDao {
 
     void deleteById(int id);
     void clearAllEvents();
-
-
 }
