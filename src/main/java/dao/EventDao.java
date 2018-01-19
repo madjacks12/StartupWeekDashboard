@@ -9,7 +9,7 @@ public interface EventDao {
 
     void add (Event event);
 
-//    List<Event> getAll();
+    List<Event> getAll();
 //    List<Attendees> getAllAttendeesByEvent(int eventId);
 //
 //    Event findById(int id);

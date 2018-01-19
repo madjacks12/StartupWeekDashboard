@@ -37,4 +37,12 @@ public class Sql2oEventDao implements EventDao{
             System.out.println(ex); //oops we have an error!
         }
     }
+
+    @Override
+    public List<Event> getAll() {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM events")
+                    .executeAndFetch(Event.class);
+        }
+    }
 }
