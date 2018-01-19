@@ -8,7 +8,7 @@ public interface AttendeesDao {
 
     void add (Attendees attendees);
 
-   // List<Attendees> getAll();
+    List<Attendees> getAll();
 
     Attendees findById(int id);
 
