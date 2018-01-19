@@ -75,4 +75,17 @@ public class Sql2oEventDaoTest {
         assertTrue(eventDao.getAllAttendeesByEvent(eventId).contains(testAttendeesTwo));
         assertFalse(eventDao.getAllAttendeesByEvent(eventId).contains(testAttendeesThree)); //things are accurate!
     }
+
+    @Test
+    public void updateChangesEventContent() throws Exception {
+        String initialName = "Coding Workshop";
+        Event testEvent = new Event("Coding Workshop", "A good one", "03-04-1999", "7:00");
+        eventDao.add(testEvent);
+        eventDao.update(testEvent.getId(),"Coding Workshop", "testDescription", "11-11-1111", "5:00") ;
+        Event updatedEvent = eventDao.findById(testEvent.getId());
+        assertNotEquals(initialName, updatedEvent.getName());
+    }
+
+
+
 }
