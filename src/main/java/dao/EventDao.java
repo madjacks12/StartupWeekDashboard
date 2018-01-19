@@ -13,7 +13,6 @@ public interface EventDao {
     Event findById(int id);
     List<Attendees> getAllAttendeesByEvent(int eventId);
     void update(int id, String name, String description, String startDate, String startTime);
-//
-//    void deleteById(int id);
+    void deleteById(int id);
 //    void clearAllEvents();
 }

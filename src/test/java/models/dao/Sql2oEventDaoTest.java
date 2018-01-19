@@ -86,6 +86,16 @@ public class Sql2oEventDaoTest {
         assertNotEquals(initialName, updatedEvent.getName());
     }
 
+    @Test
+    public void deleteByIdDeletesCorrectEvent() throws Exception {
+        Event testEvent = new Event("Coding Workshop", "A good one", "03-04-1999", "7:00");
+        eventDao.add(testEvent);
+        eventDao.deleteById(testEvent.getId());
+        assertEquals(0, eventDao.getAll().size());
+    }
+
+
+
 
 
 }
