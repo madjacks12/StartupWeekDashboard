@@ -10,7 +10,7 @@ public interface AttendeesDao {
 
     List<Attendees> getAll();
 
-    Attendees findById(int id);
+    //Attendees findById(int id);
 
     //void update(int id, String firstName, String lastName, String email, String phone);
 
