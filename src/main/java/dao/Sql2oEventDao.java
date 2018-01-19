@@ -19,17 +19,17 @@ public class Sql2oEventDao implements EventDao{
     @Override
     public void add(Event event) {
 
-        String sql = "INSERT INTO events (name, description, date, time) VALUES (:name, :description, :date, :time)";
+        String sql = "INSERT INTO events (name, description, startDate, startTime) VALUES (:name, :description, :startDate, :startTime)";
         try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql)
                     .addParameter("name", event.getName())
                     .addParameter("description", event.getDescription())
-                    .addParameter("date", event.getDate())
-                    .addParameter("time", event.getTime())
+                    .addParameter("startDate", event.getStartDate())
+                    .addParameter("startTime", event.getStartTime())
                     .addColumnMapping("NAME", "name")
                     .addColumnMapping("DESCRIPTION", "description")
-                    .addColumnMapping("DATE", "date")
-                    .addColumnMapping("TIME", "time")
+                    .addColumnMapping("DATE", "startDate")
+                    .addColumnMapping("TIME", "StartTime")
                     .executeUpdate()
                     .getKey();
             event.setId(id);
@@ -62,5 +62,22 @@ public class Sql2oEventDao implements EventDao{
                     .addParameter("eventId", eventId)
                     .executeAndFetch(Attendees.class);
         }
+    }
+
+    @Override
+    public void update(int id, String newName, String newDescription, String newStartDate, String newStartTime) {
+        String sql = "UPDATE events SET name =:name, description = :description, startDate = :startDate, startTime = :startTime WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("name", newName)
+                    .addParameter("description", newDescription)
+                    .addParameter("startDate", newStartDate)
+                    .addParameter("startTime", newStartTime)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+
     }
 }

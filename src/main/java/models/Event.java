@@ -7,16 +7,16 @@ import java.util.List;
 public class Event {
     private String name;
     private String description;
-    private String date;
-    private String time;
+    private String startDate;
+    private String startTime;
     private int id;
 
 
-    public Event(String name, String description, String date, String time) {
+    public Event(String name, String description, String startDate, String startTime) {
         this.name = name;
         this.description = description;
-        this.date = date;
-        this.time=time;
+        this.startDate = startDate;
+        this.startTime = startTime;
     }
 
     public String getName() {
@@ -27,20 +27,20 @@ public class Event {
         return description;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getTime() {
-        return time;
     }
 
     @Override
@@ -53,16 +53,16 @@ public class Event {
         if (id != event.id) return false;
         if (!name.equals(event.name)) return false;
         if (description != null ? !description.equals(event.description) : event.description != null) return false;
-        if (date != null ? !date.equals(event.date) : event.date != null) return false;
-        return time != null ? time.equals(event.time) : event.time == null;
+        if (startDate != null ? !startDate.equals(event.startDate) : event.startDate != null) return false;
+        return startTime != null ? startTime.equals(event.startTime) : event.startTime == null;
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
         result = 31 * result + id;
         return result;
     }

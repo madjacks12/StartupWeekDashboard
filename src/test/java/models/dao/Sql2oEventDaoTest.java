@@ -78,7 +78,7 @@ public class Sql2oEventDaoTest {
 
     @Test
     public void updateChangesEventContent() throws Exception {
-        String initialName = "Coding Workshop";
+        String initialName = "Java cafe";
         Event testEvent = new Event("Coding Workshop", "A good one", "03-04-1999", "7:00");
         eventDao.add(testEvent);
         eventDao.update(testEvent.getId(),"Coding Workshop", "testDescription", "11-11-1111", "5:00") ;
