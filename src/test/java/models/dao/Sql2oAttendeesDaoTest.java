@@ -66,5 +66,13 @@ public class Sql2oAttendeesDaoTest {
         assertNotEquals(initialEmail, updatedAttendees.getEmail());
     }
 
+    @Test
+    public void deleteByIdDeletesCorrectAttendee() throws Exception {
+        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", 1);
+        attendeesDao.add(testAttendees);
+        attendeesDao.deleteById(testAttendees.getId());
+        assertEquals(0, attendeesDao.getAll().size());
+    }
+
 
 }
