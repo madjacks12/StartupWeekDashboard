@@ -41,7 +41,7 @@ public class Sql2oEventDaoTest {
     public void AddingSetsId() throws Exception {
         Event testEvent = new Event("Coding Workshop", "A good one", "03-04-1999", "7:00");
         int originalEventId = testEvent.getId();
-        attendeesDao.add(testEvent);
+        eventDao.add(testEvent);
         assertNotEquals(originalEventId, testEvent.getId());
     }
 }
