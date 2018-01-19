@@ -10,9 +10,10 @@ public interface EventDao {
     void add (Event event);
 
     List<Event> getAll();
+    Event findById(int id);
 //    List<Attendees> getAllAttendeesByEvent(int eventId);
 //
-//    Event findById(int id);
+
 //
 //    void update(int id, String name, String description, String date, String time);
 //
