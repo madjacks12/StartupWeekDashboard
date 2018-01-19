@@ -41,5 +41,20 @@ public class Sql2oAttendeesDaoTest {
         assertNotEquals(originalAttendeesId, testAttendees.getId());
     }
 
+    @Test
+    public void addedAttendeesAreReturnedFromgetAll() throws Exception {
+        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", 1);
+        attendeesDao.add(testAttendees);
+        assertEquals(1, attendeesDao.getAll().size());
+    }
+
+//    @Test
+//    public void existingAttendeesCanBeFoundById() throws Exception {
+//        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", 1);
+//        attendeesDao.add(testAttendees); //add to dao (takes care of saving)
+//        Attendees foundAttendees = attendeesDao.findById(testAttendees.getId());
+//        assertEquals(testAttendees, foundAttendees);
+//    }
+
 
 }
