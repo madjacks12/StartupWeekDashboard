@@ -56,17 +56,20 @@ public class Sql2oAttendeesDao implements AttendeesDao {
             }
         }
 
-//        @Override
-//        public void update(int id, String firstName, String lastName, String email, String phone){
-//            String sql = "UPDATE tasks SET (description, categoryId) = (:description, :categoryId) WHERE id=:id"; //raw sql
-//            try(Connection con = sql2o.open()){
-//                con.createQuery(sql)
-//                        .addParameter("description", newDescription)
-//                        .addParameter("categoryId", newCategoryId)
-//                        .addParameter("id", id)
-//                        .executeUpdate();
-//            } catch (Sql2oException ex) {
-//                System.out.println(ex);
-//            }
-//        }
+        @Override
+        public void update(int id, String newFirstName, String newLastName, String newEmail, String newPhone, int newEventId){
+            String sql = "UPDATE attendees SET (firstName, lastName, email, phone, eventId) = (:firstName, :lastName, :email, :phone, :eventId) WHERE id=:id"; //raw sql
+            try(Connection con = sql2o.open()){
+                con.createQuery(sql)
+                        .addParameter("id",id)
+                        .addParameter("firstName", newFirstName)
+                        .addParameter("lastName", newLastName)
+                        .addParameter("email", newEmail)
+                        .addParameter("phone", newPhone)
+                        .addParameter("eventId", newEventId)
+                        .executeUpdate();
+            } catch (Sql2oException ex) {
+                System.out.println(ex);
+            }
+        }
 }

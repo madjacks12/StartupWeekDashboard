@@ -61,9 +61,8 @@ public class Sql2oAttendeesDaoTest {
         String initialEmail = "bruce@davis.com";
         Attendees testAttendees = new Attendees("Bruce", "Davis", initialEmail, "420-300-5000", 1);
         attendeesDao.add(testAttendees);
-
         attendeesDao.update(testAttendees.getId(),"Bruce", "Davis", "brian@crisp.com", "420-300-5000",1);
-        Attendees updatedAttendees = attendeesDao.findById(testAttendees.getId()); //why do I need to refind this?
+        Attendees updatedAttendees = attendeesDao.findById(testAttendees.getId());
         assertNotEquals(initialEmail, updatedAttendees.getEmail());
     }
 
