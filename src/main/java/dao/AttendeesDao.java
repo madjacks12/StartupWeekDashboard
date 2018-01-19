@@ -12,7 +12,7 @@ public interface AttendeesDao {
 
     Attendees findById(int id);
 
-    //void update(int id, String firstName, String lastName, String email, String phone);
+    void update(int id, String firstName, String lastName, String email, String phone, int eventId);
 
     //void deleteById(int id);
     //void clearAllAttendees();
