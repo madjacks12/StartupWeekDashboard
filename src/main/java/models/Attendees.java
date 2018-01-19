@@ -11,7 +11,7 @@ public class Attendees {
     private int eventId;
     private int id;
 
-    public Attendees(String firstName, String lastName, String email, String phone, int EventId) {
+    public Attendees(String firstName, String lastName, String email, String phone, int eventId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

@@ -64,10 +64,10 @@ public class Sql2oEventDaoTest {
     public void getAllAttendeesByEventReturnsAttendeesCorrectly() throws Exception {
         Event testEvent = new Event("Coding Workshop", "A good one", "03-04-1999", "7:00");
         eventDao.add(testEvent);
-        int eventId = event.getId();
-        Attendees testAttendeesOne = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", 1);
-        Attendees testAttendeesTwo = new Attendees("chris", "smith", "bruce@davis.com", "420-300-5000", 2);
-        Attendees testAttendeesThree = new Attendees("ryan", "blim", "bruce@davis.com", "420-300-5000", 2);
+        int eventId = testEvent.getId();
+        Attendees testAttendeesOne = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000", eventId);
+        Attendees testAttendeesTwo = new Attendees("chris", "smith", "bruce@davis.com", "420-300-5000", eventId);
+        Attendees testAttendeesThree = new Attendees("ryan", "blim", "bruce@davis.com", "420-300-5000", eventId);
         attendeesDao.add(testAttendeesOne);
         attendeesDao.add(testAttendeesTwo);
         assertTrue(eventDao.getAllAttendeesByEvent(eventId).size() == 2);

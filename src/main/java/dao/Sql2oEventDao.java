@@ -54,4 +54,13 @@ public class Sql2oEventDao implements EventDao{
                     .executeAndFetchFirst(Event.class); //fetch an individual item
         }
     }
+
+    @Override
+    public List<Attendees> getAllAttendeesByEvent(int eventId) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM attendees WHERE eventId = :eventId")
+                    .addParameter("eventId", eventId)
+                    .executeAndFetch(Attendees.class);
+        }
+    }
 }
