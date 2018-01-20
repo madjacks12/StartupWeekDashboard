@@ -11,12 +11,11 @@ public class Attendees {
     private int eventId;
     private int id;
 
-    public Attendees(String firstName, String lastName, String email, String phone, int eventId) {
+    public Attendees(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.eventId = eventId;
     }
 
     public String getFirstName() {

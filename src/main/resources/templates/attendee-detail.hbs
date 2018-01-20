@@ -1,0 +1,16 @@
+{{#partial "content"}}
+
+<h4>First Name:</h4>
+<p>{{ attendees.firstName }}</p>
+<h4>Last Name:</h4>
+<p> attendees.lastName }}</p>
+<h4>email:</h4>
+<p> {{ attendees.email }}</p>
+<h4>phone:</h4>
+<p> {{ attendees.phone }}</p>
+<a href="/attendees/{{attendees.id}}/update">Edit this Attendee</a>
+<br>
+
+{{/partial}}
+
+{{> layout.hbs}}

@@ -10,6 +10,7 @@
         <th scope="col">Description:</th>
         <th scope="col">Date:</th>
         <th scope="col">start Time:</th>
+        <th scope="col"><a href="/events/{{id}}/update" class="button"></a>Edit this event</th>
 
     </tr>
     </thead>
@@ -21,8 +22,7 @@
         <td>{{description}}</td>
         <td>{{startDate}}</td>
         <td>{{startTime}}</td>
-        <td><a href="/events/{{id}}/update" type="click" class="btn btn-success">Edit</a></td>
-        <td><a href="/events/{{id}}/attendees/new" type="click" class="btn btn-success">Add Attendees</a></td>
+        <td><a href="/events/{{id}}/update" class="button"></a>Edit this event</td>
     </tr>
     </tbody>
     {{/each}}

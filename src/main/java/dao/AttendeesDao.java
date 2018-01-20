@@ -11,6 +11,7 @@ public interface AttendeesDao {
     List<Attendees> getAll();
 
     Attendees findById(int id);
+    void addToEvent(int id, int customerId);
 
     void update(int id, String firstName, String lastName, String email, String phone, int eventId);
 
