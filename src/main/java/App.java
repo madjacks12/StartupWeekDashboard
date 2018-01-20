@@ -27,6 +27,16 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: show all attendees for event
+        get("/events/:event_id/attendees", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEventToFind = Integer.parseInt(req.params("event_id")); //pull id - must match route segment
+            Event foundEvent = eventDao.findById(idOfEventToFind);
+            List<Attendees> attendees = eventDao.getAllAttendeesByEvent(idOfEventToFind);
+            model.put("event", foundEvent); //add it to model for template to display
+            model.put("attendees",attendees);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //get: show new attendee form for event
         get("/events/:event_id/attendees/new", (request, response) -> {
@@ -71,7 +81,10 @@ public class App {
             String email = request.queryParams("email");
             String phone = request.queryParams("phone");
             Attendees newAttendees = new Attendees(firstName, lastName, email, phone);
+            int idOfEventToFind = Integer.parseInt(request.params("event_id")); //pull id - must match route segment
+            Event foundEvent = eventDao.findById(idOfEventToFind); //use it to find post
             attendeesDao.add(newAttendees);
+            model.put("event", foundEvent); //add it to model for template to display
             model.put("attendee", newAttendees);
             return new ModelAndView(model, "success-attendee.hbs");
         }, new HandlebarsTemplateEngine());
@@ -89,6 +102,8 @@ public class App {
         get("/events/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<Event> events = eventDao.getAll();
+            List<Attendees> attendees = attendeesDao.getAll();
+            model.put("attendees", attendees);
             model.put("events", events);
             return new ModelAndView(model, "all-events.hbs");
         }, new HandlebarsTemplateEngine());
