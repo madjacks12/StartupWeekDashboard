@@ -97,7 +97,7 @@ public class Sql2oAttendeesDao implements AttendeesDao {
 
     @Override
     public void addToEvent(int id, int eventId) {
-        String sql = "UPDATE attendees SET event Id = :customerId WHERE id = :id";
+        String sql = "UPDATE attendees SET eventId = :eventId WHERE id = :id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)

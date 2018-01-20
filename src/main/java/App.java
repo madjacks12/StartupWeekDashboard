@@ -18,7 +18,7 @@ public class App {
         Sql2oAttendeesDao attendeesDao = new Sql2oAttendeesDao(sql2o);
         Sql2oEventDao eventDao = new Sql2oEventDao(sql2o);
 
-
+        //Homepage
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Attendees> attendees = attendeesDao.getAll();
@@ -27,6 +27,8 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
+
+        //get: show new attendee form for event
         get("/events/:event_id/attendees/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEventToFind = Integer.parseInt(request.params("event_id")); //pull id - must match route segment
@@ -35,16 +37,19 @@ public class App {
             return new ModelAndView(model, "attendees-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: show about page contents
         get("/about", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "about.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //show new event form
         get("/events/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "event-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //process new event form
         post("/events/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String name = request.queryParams("name");
@@ -58,6 +63,7 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //process new attendee to an event
         post("/events/:event_id/attendees/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String firstName = request.queryParams("firstName");
@@ -70,6 +76,7 @@ public class App {
             return new ModelAndView(model, "success-attendee.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //show specific attendee
         get("/event/:event_id/attendees/:attendee_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfAttendeeToFind = Integer.parseInt(req.params("attendee_id"));
@@ -78,6 +85,7 @@ public class App {
             return new ModelAndView(model, "attendee-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //show all events
         get("/events/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<Event> events = eventDao.getAll();
@@ -85,6 +93,7 @@ public class App {
             return new ModelAndView(model, "all-events.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //show details of specific event
         get("/events/:event_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEventToFind = Integer.parseInt(req.params("event_id")); //pull id - must match route segment
@@ -93,6 +102,7 @@ public class App {
             return new ModelAndView(model, "event-details.hbs"); //individual post page.
         }, new HandlebarsTemplateEngine());
 
+        //show form to update event
         get("/events/:event_id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEventToEdit = Integer.parseInt(req.params("event_id"));
@@ -101,6 +111,8 @@ public class App {
             return new ModelAndView(model, "event-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+
+        //process event update
         post("/events/:event_id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String newName = req.queryParams("name");
