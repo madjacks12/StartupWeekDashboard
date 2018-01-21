@@ -27,6 +27,7 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
+
         //get: show all attendees for event
         get("/events/:event_id/attendees", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -34,12 +35,21 @@ public class App {
             Event foundEvent = eventDao.findById(idOfEventToFind);
             List<Attendees> attendees = eventDao.getAllAttendeesByEvent(idOfEventToFind);
             model.put("event", foundEvent); //add it to model for template to display
-            model.put("attendees",attendees);
-            return new ModelAndView(model, "index.hbs");
+            model.put("attendees", attendees);
+            return new ModelAndView(model, "all-attendees.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: show new attendee form for event
         get("/events/:event_id/attendees/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEventToFind = Integer.parseInt(request.params("event_id")); //pull id - must match route segment
+            Event foundEvent = eventDao.findById(idOfEventToFind); //use it to find post
+            model.put("event", foundEvent); //add it to model for template to display
+            return new ModelAndView(model, "attendees-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show new attendee form for event from success-attendee page
+        get("/events/:event_id/attendees/:attendee_id/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEventToFind = Integer.parseInt(request.params("event_id")); //pull id - must match route segment
             Event foundEvent = eventDao.findById(idOfEventToFind); //use it to find post
@@ -80,8 +90,8 @@ public class App {
             String lastName = request.queryParams("lastName");
             String email = request.queryParams("email");
             String phone = request.queryParams("phone");
-            Attendees newAttendees = new Attendees(firstName, lastName, email, phone);
-            int idOfEventToFind = Integer.parseInt(request.params("event_id")); //pull id - must match route segment
+            int idOfEventToFind = Integer.parseInt(request.params("event_id"));
+            Attendees newAttendees = new Attendees(firstName, lastName, email, phone, idOfEventToFind);
             Event foundEvent = eventDao.findById(idOfEventToFind); //use it to find post
             attendeesDao.add(newAttendees);
             model.put("event", foundEvent); //add it to model for template to display
@@ -140,6 +150,5 @@ public class App {
             eventDao.update(1, newName, newDescription, newStartDate, newStartTime);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
-
     }
 }

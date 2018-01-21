@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS attendees (
   lastName VARCHAR,
   phone VARCHAR,
   email VARCHAR,
-  eventId INTEGER
+  eventId INTEGER REFERENCES events(id)
 );
 
 CREATE TABLE IF NOT EXISTS events (
