@@ -29,7 +29,7 @@ public class App {
 
 
         //get: show all attendees for event
-        get("/events/:event_id/attendees", (req, res) -> {
+        get("/events/:event_id/attendees/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEventToFind = Integer.parseInt(req.params("event_id")); //pull id - must match route segment
             Event foundEvent = eventDao.findById(idOfEventToFind);
@@ -92,20 +92,44 @@ public class App {
             String phone = request.queryParams("phone");
             int idOfEventToFind = Integer.parseInt(request.params("event_id"));
             Attendees newAttendees = new Attendees(firstName, lastName, email, phone, idOfEventToFind);
-            Event foundEvent = eventDao.findById(idOfEventToFind); //use it to find post
+            Event foundEvent = eventDao.findById(idOfEventToFind);
             attendeesDao.add(newAttendees);
-            model.put("event", foundEvent); //add it to model for template to display
+            model.put("event", foundEvent);
             model.put("attendee", newAttendees);
             return new ModelAndView(model, "success-attendee.hbs");
         }, new HandlebarsTemplateEngine());
 
         //show specific attendee
-        get("/event/:event_id/attendees/:attendee_id", (req, res) -> {
+        get("/events/:event_id/attendees/:attendee_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfAttendeeToFind = Integer.parseInt(req.params("attendee_id"));
             Attendees foundAttendee = attendeesDao.findById(idOfAttendeeToFind);
             model.put("attendee", foundAttendee);
             return new ModelAndView(model, "attendee-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //show form to update attendee
+        get("/events/:event_id/attendees/:attendee_id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfAttendeeToEdit = Integer.parseInt(req.params("attendee_id"));
+            Attendees editAttendee = attendeesDao.findById(idOfAttendeeToEdit);
+            model.put("editAttendee", editAttendee);
+            return new ModelAndView(model, "attendees-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //process form to update attendee
+        post("/events/:event_id/attendees/:attendee_id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String newFirstName = req.queryParams("firstName");
+            String newLastName = req.queryParams("lastName");
+            String newEmail = req.queryParams("email");
+            String newPhone = req.queryParams("phone");
+            int idOfAttendeeToEdit = Integer.parseInt(req.params("attendee_id"));
+            Attendees editAttendee = attendeesDao.findById(idOfAttendeeToEdit);
+            int idOfEventToEdit = Integer.parseInt(req.params("event_id"));
+            attendeesDao.update(idOfAttendeeToEdit, newFirstName, newLastName, newEmail, newPhone, idOfEventToEdit);
+            model.put("attendee", editAttendee);
+            return new ModelAndView(model, "success-attendee.hbs");
         }, new HandlebarsTemplateEngine());
 
         //show all events
@@ -138,7 +162,7 @@ public class App {
 
 
         //process event update
-        post("/events/:event_id/update", (req, res) -> {
+        post("/event/:event_id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String newName = req.queryParams("name");
             String newDescription = req.queryParams("description");
