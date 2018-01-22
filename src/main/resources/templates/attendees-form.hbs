@@ -21,7 +21,7 @@
 </form>
 {{else}}
 <h1>Add a new attendee to your event!</h1>
-<form action="/events/{{event.id}}/attendees/{{attendee.id}}/update" method="post" name="form2">
+<form action="/events/{{event.id}}/attendees/new" method="post" name="form2">
     <label for="firstName">First name</label>
     <input id="firstName" name="firstName" type="text">
     <br>

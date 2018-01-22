@@ -162,16 +162,15 @@ public class App {
 
 
         //process event update
-        post("/event/:event_id/update", (req, res) -> {
+        post("/events/:event_id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String newName = req.queryParams("name");
             String newDescription = req.queryParams("description");
-            String newAttendees = req.queryParams("attendees");
-            String newStartDate = req.queryParams("newStartDate");
-            String newStartTime = req.queryParams("newStartTime");
+            String newStartDate = req.queryParams("startDate");
+            String newStartTime = req.queryParams("startTime");
             int idOfEventToEdit = Integer.parseInt(req.params("event_id"));
             Event editEvent = eventDao.findById(idOfEventToEdit);
-            eventDao.update(1, newName, newDescription, newStartDate, newStartTime);
+            eventDao.update(idOfEventToEdit, newName, newDescription, newStartDate, newStartTime);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 

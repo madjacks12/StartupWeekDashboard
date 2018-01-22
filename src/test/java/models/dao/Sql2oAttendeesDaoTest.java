@@ -35,7 +35,7 @@ public class Sql2oAttendeesDaoTest {
 
     @Test
     public void AddingSetsId() throws Exception {
-        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000");
+        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000",1);
         int originalAttendeesId = testAttendees.getId();
         attendeesDao.add(testAttendees);
         assertNotEquals(originalAttendeesId, testAttendees.getId());
@@ -43,14 +43,14 @@ public class Sql2oAttendeesDaoTest {
 
     @Test
     public void addedAttendeesAreReturnedFromgetAll() throws Exception {
-        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000");
+        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000",1);
         attendeesDao.add(testAttendees);
         assertEquals(1, attendeesDao.getAll().size());
     }
 
     @Test
     public void existingAttendeesCanBeFoundById() throws Exception {
-        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000");
+        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000",1);
         attendeesDao.add(testAttendees); //add to dao (takes care of saving)
         Attendees foundAttendees = attendeesDao.findById(testAttendees.getId());
         assertEquals(testAttendees, foundAttendees);
@@ -59,7 +59,7 @@ public class Sql2oAttendeesDaoTest {
     @Test
     public void updateChangesAttendeesData() throws Exception {
         String initialEmail = "bruce@davis.com";
-        Attendees testAttendees = new Attendees("Bruce", "Davis", initialEmail, "420-300-5000");
+        Attendees testAttendees = new Attendees("Bruce", "Davis", initialEmail, "420-300-5000",1);
         attendeesDao.add(testAttendees);
         attendeesDao.update(testAttendees.getId(),"Bruce", "Davis", "brian@crisp.com", "420-300-5000",1);
         Attendees updatedAttendees = attendeesDao.findById(testAttendees.getId());
@@ -68,7 +68,7 @@ public class Sql2oAttendeesDaoTest {
 
     @Test
     public void deleteByIdDeletesCorrectAttendee() throws Exception {
-        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000");
+        Attendees testAttendees = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000",1);
         attendeesDao.add(testAttendees);
         attendeesDao.deleteById(testAttendees.getId());
         assertEquals(0, attendeesDao.getAll().size());
@@ -76,26 +76,13 @@ public class Sql2oAttendeesDaoTest {
 
     @Test
     public void clearAllClearsAll() throws Exception {
-        Attendees testAttendeesOne = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000");
-        Attendees testAttendeesTwo = new Attendees("chris", "smith", "bruce@davis.com", "420-300-5000");
+        Attendees testAttendeesOne = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000",1);
+        Attendees testAttendeesTwo = new Attendees("chris", "smith", "bruce@davis.com", "420-300-5000",1);
         attendeesDao.add(testAttendeesOne);
         attendeesDao.add(testAttendeesTwo);
         int daoSize = attendeesDao.getAll().size();
         attendeesDao.clearAllAttendees();
         assertTrue(daoSize > 0 && daoSize > attendeesDao.getAll().size());
-    }
-
-    @Test
-    public void canAddEventId() throws Exception {
-        Attendees testAttendeesOne = new Attendees("Bruce", "Davis", "bruce@davis.com", "420-300-5000");
-        Attendees testAttendeesTwo = new Attendees("chris", "smith", "bruce@davis.com", "420-300-5000");
-        Attendees testAttendeesThree = new Attendees("chris", "smith", "bruce@davis.com", "420-300-5000");
-        attendeesDao.add(testAttendeesOne);
-        attendeesDao.add(testAttendeesTwo);
-        attendeesDao.add(testAttendeesThree);
-        attendeesDao.addToEvent(2,2);
-        assertEquals(2, attendeesDao.findById(2).getEventId());
-
     }
 
 }

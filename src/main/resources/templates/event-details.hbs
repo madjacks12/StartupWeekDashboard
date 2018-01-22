@@ -1,17 +1,13 @@
 {{#partial "content"}}
 
-<h4>Name:</h4>
-<p>{{ event.name }}</p>
-<h4>Event Description:</h4>
-<p> {{ event.description }}</p>
-<h4>Event year:</h4>
-<p> {{ event.year }}</p>
-<h4>Event month:</h4>
-<p> {{ event.month }}</p>
-<h4>Event year:</h4>
-<p> {{ event.day }}</p>
-<h4>Attendees:</h4>
-<p> {{ event.attendees }}</p>
+<div style="background-color:#b2d2ff; width:60px"><h4>Name:</h4></div>
+    <p>{{ event.name }}</p>
+<div style="background-color:#b2d2ff; width:150px"><h4>Event Description:</h4></div>
+    <p> {{event.description}}</p>
+<div style="background-color:#b2d2ff; width:100px"><h4>Event Date:</h4></div>
+    <p>{{event.startDate}}</p>
+<div style="background-color:#b2d2ff; width:100px"><h4>Event Time:</h4></div>
+    <p> {{event.startTime}}</p>
     <a href="/events/{{event.id}}/update">Edit this event</a>
     <br>
 
