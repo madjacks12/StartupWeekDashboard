@@ -13,20 +13,20 @@
   
   * _Clone git repo to your computer_
   * _Open project in Intellij IDEA._
-  *_Open in Google Chrome at localhost:4567_
+  * _Open in Google Chrome at localhost:4567_
   
   
   ## Known Bugs
   
-  *_There are currently no known bugs for this app._
+  _There are currently no known bugs for this app._
   
   
   ## Technologies Used
   
-  *_Java_
-  *_Spark_
-  *_Postgres_
-  *_Handlebars_
+  * _Java_
+  * _Spark_
+  * _Postgres_
+  * _Handlebars_
 
   
   ### License
