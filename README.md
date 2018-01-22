@@ -6,8 +6,8 @@
   
   ## Description
   
-  _This app takes user input for creating an event and stores it online. Events are saved by dynamically generated id numbers. 
-  The user can input a number of different fields including name, description, year, month, day and attendees._
+  _This app is a dashboard for creating and updating events and attendees to the events. The data is created and stored in a postgres database with a parent table called "Event" and child table called "attendee".
+  The user can input a number of different fields for events: Name, Description, Date and Time. The user can also add attendees to the events and store their first and last name, phone number and email address._
   
   ## Setup/Installation Requirements
   
@@ -18,13 +18,14 @@
   
   ## Known Bugs
   
-  *_App is functional but there is a problem with tests failing due to an ArrayList within the Event constuctor._
+  *_There are currently no known bugs for this app._
   
   
   ## Technologies Used
   
   *_Java_
   *_Spark_
+  *_Postgres_
   *_Handlebars_
 
   
