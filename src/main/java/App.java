@@ -174,5 +174,27 @@ public class App {
             eventDao.update(1, newName, newDescription, newStartDate, newStartTime);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
+
+    //get: delete an individual Attendee
+        get("/events/:event_id/attendees/:attendee_id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfAttendeeToDelete = Integer.parseInt(req.params("attendee_id"));
+            Attendees deleteAttendee = attendeesDao.findById(idOfAttendeeToDelete);
+            attendeesDao.deleteById(idOfAttendeeToDelete);
+            model.put("attendee", deleteAttendee);
+            return new ModelAndView(model, "success-attendee-delete.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete an individual Event
+        get("/events/:event_id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEventToDelete = Integer.parseInt(req.params("event_id"));
+            Event deleteEvent = eventDao.findById(idOfEventToDelete);
+            eventDao.deleteById(idOfEventToDelete);
+            model.put("event", deleteEvent);
+            return new ModelAndView(model, "success-event-delete.hbs");
+        }, new HandlebarsTemplateEngine());
     }
+
+
 }
